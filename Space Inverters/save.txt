@@ -1,0 +1,77 @@
+import pygame
+from pygame.locals import *
+import sys
+pygame.init()
+
+width, height = 1800, 900
+screen = pygame.display.set_mode((width, height))
+
+# Load the background image and UFO image
+background_image = pygame.image.load("background1.jpg")
+ufo_image = pygame.image.load("spaceship2.png")
+
+background_x = 0
+ufo_y = height // 2.2
+ufo_x = width // 8
+clock = pygame.time.Clock()
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == KEYDOWN:
+            if event.key == K_r:
+                running = False
+
+
+    keys = pygame.key.get_pressed()
+    if keys[K_UP] and ufo_y > 14:
+        ufo_y -= 5
+    elif keys[K_DOWN] and ufo_y < 790:
+        ufo_y += 5
+    if keys[K_LEFT]  and ufo_x > 5:
+        ufo_x -= 5
+        print(ufo_x)
+    elif keys[K_RIGHT] and ufo_x < 1670:
+        ufo_x += 5
+
+    background_x -= 1
+    if background_x <= -background_image.get_width():
+        background_x = 0
+
+    # Draw two instances of the background image side by side
+    screen.blit(background_image, (background_x, 0))
+    screen.blit(background_image, (background_x + background_image.get_width(), 0))
+
+    screen.blit(ufo_image, (ufo_x , ufo_y) )
+#    screen.blit(ufo_image, (ufo_x, width // 2 - ufo_image.get_width() // 2))
+    pygame.display.flip()
+    clock.tick(60)
+
+
+
+    .
+
+
+
+
+
+
+
+
+
+
+
+        # Building the random movementforr the spacdship
+    if running == True:
+        en_1 -= 1
+        if en_2 < 800:
+            en_2 += 1
+        print(en_1,en_2)
+
+en_1 = random.randint(1100,1700)
+en_2 = random.randint(100,840)
+enemy_y = en_1
+enemy_x = en_2
